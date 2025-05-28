@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django:
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# Django migrations
+**/migrations/
+!**/migrations/__init__.py
+
+# PostgreSQL databases
+*.pgsql
+*.psql
+*.db
+*.dump
+*.sql
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+.Python
+
+# VS Code settings
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Coverage & test reports
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.cache
+htmlcov/
+.junit.xml
+
+# Pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# System
+.DS_Store
+Thumbs.db
+
