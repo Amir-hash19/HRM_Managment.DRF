@@ -31,13 +31,30 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_yasg',
+    'django_filters',
+    'django_celery_beat',
+    'rest_framework_simplejwt',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    'attendance.apps.AttendanceConfig',
+    'employees.apps.EmployeesConfig',
+    'leave.apps.LeaveConfig',
+    'notifications.apps.NotificationsConfig',
+    'payroll.apps.PayrollConfig',
+    'perfomance.apps.PerfomanceConfig',
+    'recruitment.apps.RecruitmentConfig',
+    'reports.apps.ReportsConfig'
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,12 +90,15 @@ WSGI_APPLICATION = 'HRM.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "HRM_db",
+        "USER": "admin",
+        "PASSWORD": "amir112233",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
