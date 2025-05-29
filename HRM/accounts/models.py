@@ -2,7 +2,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
 from django.db import models
-from employees.models import Department
 import re
 
 
@@ -42,7 +41,7 @@ def validate_username_with_special_characters(value):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=100, unique=True, validators=validate_username_with_special_characters)
+    username = models.CharField(max_length=100, unique=True, validators=[validate_username_with_special_characters])
     email = models.EmailField(unique=True)
     phone = PhoneNumberField(unique=True, region='IR')
     is_active = models.BooleanField(default=True)
@@ -63,30 +62,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         
 
 
-class AdminActivityLog(models.Model):
-    admin_user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
-    action = models.CharField(max_length=255)
-    detail = models.TextField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    ip_address = models.GenericIPAddressField(null=True, blank=True)
-    user_agent = models.CharField(max_length=255, null=True, blank=True)
 
-
-    def __str__(self):
-        return f"{self.admin_user} - {self.action} - {self.created_at}"
     
 
 
 
 
-class Notifications(models.Model):
-    title = models.CharField(max_length=100)
-    message = models.TextField()
-    department = models.ForeignKey(to=Department, on_delete=models.SET_NULL, null=True, blank=True)
-    sent_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50, choices=[('pending', 'Pending'), ('sent', 'Sent')], default='pending')
-    slug = models.SlugField(unique=True)
-
-
-    def __str__(self):
-        return self.title
