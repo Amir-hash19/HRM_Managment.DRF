@@ -79,5 +79,7 @@ dist/
 Thumbs.db
 
 .env
+
+
 ./.idea
 */.idea/*
