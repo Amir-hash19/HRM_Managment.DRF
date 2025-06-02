@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.postgres.search import TrigramSimilarity
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
 from django.db import models
 import re
 
@@ -47,9 +49,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     password = models.CharField(max_length=20)
     is_staff = models.BooleanField(default=False)
-
     slug = models.SlugField(unique=True)
-
+                    
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['phone']
 
@@ -59,12 +60,18 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
 
+#Person.people.all()
+# class Person(models.Model):
+#     people = models.Manager()
         
 
 
+User = get_user_model()
 
-    
 
-
+def search_users(query):
+    return User.objects.annotate(
+        similarity=TrigramSimilarity('username', query)
+    ).filter(similarity__gt=.03).order_by("-similarity")
 
 
