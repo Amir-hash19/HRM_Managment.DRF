@@ -79,3 +79,8 @@ dist/
 Thumbs.db
 
 .env
+.env/*
+*/.env
+
+./.idea
+*/.idea/*
