@@ -16,3 +16,9 @@ class CustomUserSearchView(APIView):
         serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data)
     
+
+
+
+
+
+    
