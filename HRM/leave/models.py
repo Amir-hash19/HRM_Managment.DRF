@@ -23,7 +23,7 @@ class LeaveRequest(models.Model):
     leave_type = models.CharField(max_length=20, choices=LEAVE_TYPES)
     start_date = models.DateField()
     end_date = models.DateField()
-    reason = models.CharField(blank=True)
+    reason = models.CharField(blank=True, max_length=100)
     status = models.CharField(max_length=20, choices=STATUS, default='PENDING')
     reviewed_by = models.ForeignKey(to=CustomUser, null=True, blank=True, related_name='reviewed_leaves', on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
