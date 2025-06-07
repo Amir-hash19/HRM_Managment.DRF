@@ -9,7 +9,7 @@ class PerformanceReview(models.Model):
     period_start = models.DateField()
     period_end = models.DateField()
     score = models.IntegerField()
-    comments = models.TextField(blank=True)
+    comments = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True)
 

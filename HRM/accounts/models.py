@@ -33,9 +33,6 @@ class CustomUserManager(BaseUserManager):
 
 
 
-
-
-
 def validate_username_with_special_characters(value):
     if re.match(r'^[a-zA-Z0-9]*$', value):
         raise ValidationError("Username must contain at least one special charactes")
