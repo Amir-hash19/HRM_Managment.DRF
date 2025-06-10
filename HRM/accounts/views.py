@@ -78,4 +78,8 @@ class CreateGroupView(APIView):
             serializer.save()
             return Response({"Message":"The Group Created Successfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
+
+
+ 
